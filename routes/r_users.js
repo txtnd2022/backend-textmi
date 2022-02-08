@@ -11,6 +11,19 @@ const User = require("../models/m_user")
 //get a user
 
 router
+    .get("/check", async (req, res) => {
+        try {
+            const user = await User.find()
+            // const showData = {
+            //     username: user.username,
+            // } 
+            // const { password, updatedAt, ...other } = user._doc
+            res.status(200).json(user)
+        } catch (err) {
+            console.log(err)
+        }
+    })
+
     .get("/", async (req, res) => {
         const userId = req.query.userId;
         const username = req.query.username;
@@ -36,9 +49,9 @@ router
                 if (!currentUser.connections.includes(req.params.id)) {
                     await currentUser.updateOne({ $push: { connections: req.params.id } })
                     await user.updateOne({ $push: { connections: req.body.userId } })
-                    res.status(200).json({message: 'User added'})
+                    res.status(200).json({ message: 'User added' })
                 } else {
-                    res.status(200).json({message: 'User already exists'})
+                    res.status(200).json({ message: 'User already exists' })
                 }
             } catch (err) {
                 res.status(500).json(err)
@@ -60,7 +73,7 @@ router
                 if (currentUser.connections.includes(req.params.id)) {
                     await currentUser.updateOne({ $pull: { connections: req.params.id } })
                     await user.updateOne({ $pull: { connections: req.body.userId } })
-                    res.status(200).json('User disconnected') 
+                    res.status(200).json('User disconnected')
                 } else {
                     res.status(403).json('Already disconnected')
                 }

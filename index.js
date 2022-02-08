@@ -80,5 +80,5 @@ app.use("/api/conversations", conversationRouter)
 app.use("/api/messages", messageRouter)
 
 app.listen(PORT, () => {
-    console.log("Backend Ready on " + PORT)
+    console.log("Backend Ready to serve on " + PORT)
 })   

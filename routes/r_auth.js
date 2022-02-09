@@ -21,7 +21,8 @@ router.route("/register")
             const user = new User({
                 username: req.body.username,
                 email: req.body.email,
-                password: req.body.password
+                password: req.body.password,
+                phoneNo: req.body.phoneNo
             });
             const saveUser = await user.save();
             res.status(200).json(saveUser)

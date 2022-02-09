@@ -1,7 +1,5 @@
 const router = require("express").Router();
 const User = require("../models/m_user")
-
-
 //userId is the current user
 
 //update user

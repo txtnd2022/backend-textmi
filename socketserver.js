@@ -1,6 +1,6 @@
-const io = require('socket.io')(8900, {
+const io = require('socket.io')(9100, {
     cors: {
-        origin: 'http://localhost:3000',
+        origin: 'https://main--textmi-chatui.netlify.app/',
     }
 })
 
@@ -8,7 +8,7 @@ let users = []
 
 const addUser = (userId, socketId) => {
     !users.some(user => user.userId === userId) &&
-        users.push({ userId, socketId })
+        users.push({userId, socketId})
 }
 
 const removeUser = (socketId) => {
@@ -16,7 +16,7 @@ const removeUser = (socketId) => {
 }
 
 const getUser = (userId) => {
-    return users.find(user => user.userId === userId)
+    return users.find(user=> user.userId === userId)
 }
 
 io.on('connection', (socket) => {
@@ -30,10 +30,10 @@ io.on('connection', (socket) => {
 
 
     //send and get message
-    socket.on('sendMessage', ({ senderId, recieverId, text }) => {
+    socket.on('sendMessage', ({senderId, recieverId, text}) => {
         const user = getUser(recieverId)
-        console.log(user)
-        io.to(user.socketId).emit('getMessage', {
+        // console.log(user)
+        io.to(user.socketId).emit('getMessage',{
             senderId,
             text
         })
@@ -43,7 +43,7 @@ io.on('connection', (socket) => {
 
 
     //disconnet
-    socket.on('disconnect', () => {
+    socket.on('disconnect', ()=>{
         console.log('A user disconnected')
         removeUser(socket.id)
         io.emit('getUsers', users)

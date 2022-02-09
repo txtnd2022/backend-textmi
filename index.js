@@ -9,6 +9,7 @@ var cookieSession = require('cookie-session')
 var session = require('express-session')
 require('./google-oauth')
 require('./socket')
+require('./socketserver')
 // const cors = require('./cors')
 const cors = require('cors')
 
@@ -18,7 +19,7 @@ dotenv.config({ path: './config.env' })
 require('./db/connection')
 
 //cors setting
-const whiteList = ['http://localhost:3000']
+const whiteList = ['http://localhost:3000', 'https://main--textmi-chatui.netlify.app/']
 app.use(cors({
     origin: true,
     credentials: true,

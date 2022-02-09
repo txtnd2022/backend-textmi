@@ -1,6 +1,5 @@
 const express = require("express")
 const app = express();
-const PORT = 8080
 const dotenv = require("dotenv")
 const helmet = require("helmet")
 const morgan = require("morgan")
@@ -14,6 +13,10 @@ require('./socketserver')
 const cors = require('cors')
 
 dotenv.config({ path: './config.env' })
+
+// const NODE_ENV = process.env.NODE_ENV
+
+const PORT = process.env.PORT || 8080
 
 //db connection
 require('./db/connection')

@@ -1,6 +1,8 @@
-const io = require('socket.io')(9100, {
+const httpsServer = require('https').createServer()
+const io = require('socket.io')(httpsServer, {
     cors: {
-        origin: 'https://main--textmi-chatui.netlify.app/',
+        origin: 'https://main--textmi-chatui.netlify.app',
+        method: [GET, POST]
     }
 })
 

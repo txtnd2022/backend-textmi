@@ -8,7 +8,6 @@ var cookieSession = require('cookie-session')
 var session = require('express-session')
 require('./google-oauth')
 require('./socket')
-require('./socketserver')
 // const cors = require('./cors')
 const cors = require('cors')
 
@@ -17,6 +16,7 @@ dotenv.config({ path: './config.env' })
 // const NODE_ENV = process.env.NODE_ENV
 
 const PORT = process.env.PORT || 8080
+require('./socketserver')
 
 //db connection
 require('./db/connection')

@@ -1,5 +1,5 @@
-const httpsServer = require('https').createServer()
-const io = require('socket.io')(httpsServer, {
+// const httpsServer = require('https').createServer()
+const io = require('socket.io')(PORT, {
     cors: {
         origin: 'https://textmi-chatui.netlify.app',
     }

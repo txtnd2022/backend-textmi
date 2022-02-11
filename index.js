@@ -83,6 +83,6 @@ app.use("/api/auth", authRouter)
 app.use("/api/conversations", conversationRouter)
 app.use("/api/messages", messageRouter)
 
-app.listen(PORT, () => {
+server = app.listen(PORT, () => {
     console.log("Backend Ready to serve on " + PORT)
 })   
